@@ -1,0 +1,42 @@
+{
+    "builders": [{
+        "type": "docker",
+        "image": "debian:jessie-slim",
+        "commit": true,
+        "changes": [
+            "VOLUME /data",
+            "WORKDIR /data",
+            "EXPOSE 6379",
+	    "ENTRYPOINT [\"docker-entrypoint.sh\"]",
+	    "CMD [\"redis-server\"]"
+        ]
+    }],
+
+    "provisioners": [
+    {
+        "type": "shell",
+        "inline": [
+            "apt-get update",
+            "apt-get install python -yq"
+        ]
+    },
+        {
+            "type": "ansible",
+        "user": "root",
+            "playbook_file": "provision.yml",
+        "extra_arguments": [ 
+            "-vv"
+        ]
+        }
+    ],
+
+    "post-processors": [
+        [
+            {
+                "type": "docker-tag",
+                "repository": "redis-packer",
+                "tag": "0.1"
+            }
+        ]
+    ]
+}

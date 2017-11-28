@@ -1,0 +1,23 @@
+---
+
+- name: Provision Redis
+  hosts: all
+  roles:
+    - geerlingguy.redis
+
+  post_tasks:
+    - name: Create workdir
+      file:
+        path: /data
+        state: directory
+        owner: root
+        group: root
+        mode: 0755
+
+    - name: Put docker-entrypoint.sh
+      copy:
+        src: docker-entrypoint.sh
+        dest: /usr/local/bin/docker-entrypoint.sh
+        mode: 0755
+        owner: root
+        group: root

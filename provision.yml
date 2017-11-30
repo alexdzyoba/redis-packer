@@ -3,7 +3,7 @@
 - name: Provision Redis
   hosts: all
   roles:
-    - geerlingguy.redis
+    - redis
 
   post_tasks:
     - name: Create workdir

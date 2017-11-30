@@ -1,0 +1,31 @@
+---
+
+- name: Create directory for Redis sources
+  file:
+    path: "{{ redis_sources_dir }}"
+    state: directory
+
+- name: Download and verify Redis release archive
+  get_url:
+    url: "{{ redis_download_url }}"
+    dest: "{{ redis_sources_dir }}/redis.tar.gz"
+    checksum: sha256:{{redis_download_sha}}
+
+- name: Unpack Redis release archive
+  unarchive:
+    src: "{{ redis_sources_dir }}/redis.tar.gz"
+    dest: "{{ redis_sources_dir }}"
+    remote_src: yes
+    creates: /usr/src/redis/Makefile
+
+- name: Disable Redis protected mode in server.h
+  lineinfile:
+    path: "{{ redis_sources_dir }}/redis-{{redis_version}}/src/server.h"
+    state: present
+    regexp: "^#define CONFIG_DEFAULT_PROTECTED_MODE 1$"
+    line: "#define CONFIG_DEFAULT_PROTECTED_MODE 0"
+
+- name: Compile Redis sources
+  make:
+    chdir: "{{ redis_sources_dir }}/redis-{{redis_version}}/"
+    target: install

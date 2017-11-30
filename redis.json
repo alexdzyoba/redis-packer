@@ -7,8 +7,8 @@
             "VOLUME /data",
             "WORKDIR /data",
             "EXPOSE 6379",
-	    "ENTRYPOINT [\"docker-entrypoint.sh\"]",
-	    "CMD [\"redis-server\"]"
+            "ENTRYPOINT [\"docker-entrypoint.sh\"]",
+            "CMD [\"redis-server\"]"
         ]
     }],
 
@@ -20,14 +20,14 @@
             "apt-get install python -yq"
         ]
     },
-        {
-            "type": "ansible",
+    {
+        "type": "ansible",
         "user": "root",
-            "playbook_file": "provision.yml",
-        "extra_arguments": [ 
+        "playbook_file": "provision.yml",
+        "extra_arguments": [
             "-vv"
-        ]
-        }
+            ]
+    }
     ],
 
     "post-processors": [

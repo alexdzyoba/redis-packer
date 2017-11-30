@@ -1,0 +1,19 @@
+---
+
+redis_user: redis
+redis_group: redis
+
+redis_version: 3.2.11
+redis_download_url: http://download.redis.io/releases/redis-{{redis_version}}.tar.gz
+redis_download_sha: 31ae927cab09f90c9ca5954aab7aeecc3bb4da6087d3d12ba0a929ceb54081b5
+redis_sources_dir: /usr/src/redis
+
+redis_build_deps:
+  - ca-certificates
+  - wget
+  - gcc
+  - libc6-dev
+  - make
+
+redis_gosu_version: "1.10"
+redis_gosu_url: https://github.com/tianon/gosu/releases/download/{{redis_gosu_version}}/gosu-amd64

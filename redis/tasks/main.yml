@@ -1,0 +1,19 @@
+---
+
+- name: Install group and user
+  include: user.yml
+
+- name: Install build deps
+  package:
+    name: "{{ item }}"
+    state: installed
+  with_items: "{{ redis_build_deps }}"
+
+- name: Install gosu
+  include: gosu.yml
+
+- name: Install redis
+  include: install.yml
+
+- name: Cleanup
+  include: cleanup.yml

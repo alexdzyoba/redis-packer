@@ -14,13 +14,6 @@
 
     "provisioners": [
     {
-        "type": "shell",
-        "inline": [
-            "apt-get update",
-            "apt-get install python -yq"
-        ]
-    },
-    {
         "type": "ansible",
         "user": "root",
         "playbook_file": "provision.yml",
@@ -35,7 +28,7 @@
             {
                 "type": "docker-tag",
                 "repository": "redis-packer",
-                "tag": "0.1"
+                "tag": "latest"
             }
         ]
     ]

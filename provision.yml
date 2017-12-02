@@ -9,10 +9,12 @@
 
 - name: Provision Redis
   hosts: all
-  roles:
-    - redis
 
-  post_tasks:
+  tasks:
+    - name: Ensure Redis configured with role
+      import_role:
+        name: redis
+
     - name: Create workdir
       file:
         path: /data
@@ -21,15 +23,18 @@
         group: root
         mode: 0755
 
-    - name: Put docker-entrypoint.sh
+    - name: Put runtime programs
       copy:
-        src: docker-entrypoint.sh
-        dest: /usr/local/bin/docker-entrypoint.sh
+        src: files/{{ item }}
+        dest: /usr/local/bin/{{ item }}
         mode: 0755
         owner: root
         group: root
+      with_items:
+        - gosu
+        - docker-entrypoint.sh
 
-- name: Final cleanup
+- name: Container cleanup
   hosts: all
   gather_facts: no
   tasks:

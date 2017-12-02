@@ -12,24 +12,15 @@
         ]
     }],
 
-    "provisioners": [
-    {
+    "provisioners": [{
         "type": "ansible",
         "user": "root",
-        "playbook_file": "provision.yml",
-        "extra_arguments": [
-            "-vv"
-            ]
-    }
-    ],
+        "playbook_file": "provision.yml"
+    }],
 
-    "post-processors": [
-        [
-            {
-                "type": "docker-tag",
-                "repository": "redis-packer",
-                "tag": "latest"
-            }
-        ]
-    ]
+    "post-processors": [[ {
+        "type": "docker-tag",
+        "repository": "alexdzyoba/redis-packer",
+        "tag": "latest"
+    } ]]
 }

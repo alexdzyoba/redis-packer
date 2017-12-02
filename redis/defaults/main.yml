@@ -14,6 +14,3 @@ redis_build_deps:
   - gcc
   - libc6-dev
   - make
-
-redis_gosu_version: "1.10"
-redis_gosu_url: https://github.com/tianon/gosu/releases/download/{{redis_gosu_version}}/gosu-amd64

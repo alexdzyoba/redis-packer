@@ -1,5 +1,4 @@
 ---
-
 - name: Remove build deps
   apt:
     name: "{{ item }}"
@@ -13,4 +12,3 @@
   file:
     path: "{{ redis_sources_dir }}"
     state: absent
-

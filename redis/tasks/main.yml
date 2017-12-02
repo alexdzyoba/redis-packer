@@ -1,7 +1,6 @@
 ---
-
 - name: Install group and user
-  include: user.yml
+  import_tasks: user.yml
 
 - name: Install build deps
   package:
@@ -10,7 +9,7 @@
   with_items: "{{ redis_build_deps }}"
 
 - name: Install redis
-  include: install.yml
+  import_tasks: install.yml
 
 - name: Cleanup
-  include: cleanup.yml
+  import_tasks: cleanup.yml

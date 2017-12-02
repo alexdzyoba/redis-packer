@@ -1,5 +1,4 @@
 ---
-
 - name: Create group
   group:
     name: "{{ redis_group }}"
@@ -10,4 +9,3 @@
     name: "{{ redis_user }}"
     state: present
     group: "{{ redis_group }}"
-

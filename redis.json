@@ -20,7 +20,7 @@
 
     "post-processors": [[ {
         "type": "docker-tag",
-        "repository": "alexdzyoba/redis-packer",
+        "repository": "docker.io/alexdzyoba/redis-packer",
         "tag": "latest"
     } ]]
 }

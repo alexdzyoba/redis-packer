@@ -13,7 +13,7 @@
   tasks:
     - name: Ensure Redis configured with role
       import_role:
-        name: redis
+        name: alexdzyoba.redis
 
     - name: Create workdir
       file:
